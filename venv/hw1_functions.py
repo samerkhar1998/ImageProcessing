@@ -32,6 +32,7 @@ def showMapping(old_range, a, b):
     plt.xlim([0, 255])
     plt.ylim([0, 255])
     plt.title('contrast enhance mapping')
+    #halaaaaaaaaaaaaa
 
 
 def minkowski2Dist(im1,im2):# p=2 -> Euclidean distance
