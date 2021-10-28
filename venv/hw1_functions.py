@@ -1,3 +1,4 @@
+import glob
 import cv2
 import numpy
 import numpy as np
@@ -8,15 +9,12 @@ import math
 def print_IDs():
     print("209050202+208517631\n")
 
-def contrastEnhance(im,range):
-    # new(x,y) = a (old(xy))-> we want new(a,y) to be 255 -> a = new(x,y)/old(x,y) -> a = 255 / (y-x)
-    # y=ax+b -> y=0(to calculate b in linear fun) -> in case y=0 wich means new(x,y) = y sow we know that old(x,y) is the old minimum gray
-    # so b = -ax -> b = -a*(oldMinimumGray)
+def contrastEnhance(im,Range):
 
-    a = 255 / (range[1] - range[0])
-    b = -1 * a * range[0]
+    a = (Range[1]-Range[0]) / (np.amax(im) - np.amin(im))
+    b = Range[0] - a * np.amin(im)
 
-    nim = a*im + b
+    nim = np.array(a * np.array(im) + b)
 
     return nim, a,b
 
@@ -32,21 +30,11 @@ def showMapping(old_range, a, b):
     plt.title('contrast enhance mapping')
 
 def minkowski2Dist(im1,im2):# p=2 -> Euclidean distance
-
-
-    hist1 = cv2.calcHist([im1], [0], None, [256], [0, 256])#histogram for first image
-    hist2 = cv2.calcHist([im2], [0], None, [256], [0, 256])#histogram for second image
-    #explanaition on cv2.calcHist:
-    # parameters:
-    # 1 : image need to be in a list
-    # 2 : [0] for computing a histogram of a grayscaleimage,to compute for all three (red,green,blue) we need to put[0,1,2]
-    # 3 : here we can supply a mask,if a mask is provided, a histogram will be computed for masked pixels only.
-    #    in our case there is no mask so we put 'None'
-    # 4 : This is the number of bins we want to use when computing a histogram.
-    #    Again, this is a list, one for each channel we are computing a histogram for. The bin sizes do not all have to be the same
-    # 5 : The range of possible pixel values. Normally, this is [0, 256]
-    #    (that is not a typo — the ending range of the cv2.calcHist function is non-inclusive so you’ll want to provide a value of 256 rather than 255) for each channel,
-    #    but if you are using a color space other than RGB [such as HSV], the ranges might be different.)
+    if(np.size(im1) != np.size(im2)):
+        print("images are not in the same size, minkowski2Dist cant calculate!!!!!!")
+        return 0
+    hist1,_ = np.histogram(im1, bins = 256, range=(0,255)) #histogram for first image
+    hist2,_ = np.histogram(im2, bins = 256, range=(0,255)) #histogram for second image
 
     return math.sqrt(np.sum((np.square(hist1- hist2))))# first distance between two pix then do square for each element in the new hist
                                                        # then sum all the elements all together then return the sqr for the sum.
@@ -86,8 +74,8 @@ def mapImage (im,tm):
     return  TMim
 
 def sltNegative(im):
-    return
 
+    return
 
 def sltThreshold(im, thresh):
     return
