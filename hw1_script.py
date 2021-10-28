@@ -4,7 +4,7 @@ from hw1_functions import *
 if __name__ == "__main__":
     # feel free to add/remove/edit lines
 
-    path_image = r'Images\darkimage.tif'
+    path_image = r'C:\Users\Samer\OneDrive - University of Haifa\university-samer\image_Proccessing\hw1\Images\darkimage.tif'
     darkimg = cv2.imread(path_image)
     darkimg_gray = cv2.cvtColor(darkimg, cv2.COLOR_BGR2GRAY)
 
@@ -54,72 +54,72 @@ if __name__ == "__main__":
     contrast =  # TODO
     dists =  # TODO
 
-plt.figure()
-plt.plot(contrast, dists)
-plt.xlabel("contrast")
-plt.ylabel("distance")
-plt.title("Minkowski distance as function of contrast")
+    plt.figure()
+    plt.plot(contrast, dists)
+    plt.xlabel("contrast")
+    plt.ylabel("distance")
+    plt.title("Minkowski distance as function of contrast")
 
-print("d ------------------------------------\n")
+    print("d ------------------------------------\n")
 
-d =  # computationally prove that sliceMat(im) * [0:255] == im
-print("".format(d))
+    d =  # computationally prove that sliceMat(im) * [0:255] == im
+    print("".format(d))
 
-print("e ------------------------------------\n")
+    print("e ------------------------------------\n")
 
-d =  # computationally compare
-print("sum of diff between image and slices*[0..255] = {}".format(d))
+    d =  # computationally compare
+    print("sum of diff between image and slices*[0..255] = {}".format(d))
 
-# then display
-plt.figure()
-plt.subplot(1, 2, 1)
-plt.imshow(darkimg)
-plt.title("original image")
-plt.subplot(1, 2, 2)
-plt.imshow(TMim, cmap='gray', vmin=0, vmax=255)
-plt.title("tone mapped")
+    # then display
+    plt.figure()
+    plt.subplot(1, 2, 1)
+    plt.imshow(darkimg)
+    plt.title("original image")
+    plt.subplot(1, 2, 2)
+    plt.imshow(TMim, cmap='gray', vmin=0, vmax=255)
+    plt.title("tone mapped")
 
-print("f ------------------------------------\n")
-negative_im = sltNegative(darkimg_gray)
-plt.figure()
-plt.imshow(negative_im, cmap='gray', vmin=0, vmax=255)
-plt.title("negative image using SLT")
+    print("f ------------------------------------\n")
+    negative_im = sltNegative(darkimg_gray)
+    plt.figure()
+    plt.imshow(negative_im, cmap='gray', vmin=0, vmax=255)
+    plt.title("negative image using SLT")
 
-print("g ------------------------------------\n")
-thresh = 120  # play with it to see changes
-lena = cv2.imread(r"Images\\RealLena.tif")
-lena_gray = cv2.cvtColor(lena, cv2.COLOR_BGR2GRAY)
-thresh_im = sltThreshold()  # add parameters
+    print("g ------------------------------------\n")
+    thresh = 120  # play with it to see changes
+    lena = cv2.imread(r"Images\\RealLena.tif")
+    lena_gray = cv2.cvtColor(lena, cv2.COLOR_BGR2GRAY)
+    thresh_im = sltThreshold()  # add parameters
 
-plt.figure()
-plt.imshow(thresh_im, cmap='gray', vmin=0, vmax=255)
-plt.title("thresh image using SLT")
+    plt.figure()
+    plt.imshow(thresh_im, cmap='gray', vmin=0, vmax=255)
+    plt.title("thresh image using SLT")
 
-print("h ------------------------------------\n")
-im1 = lena_gray
-im2 = darkimage
-SLTim =  # TODO
+    print("h ------------------------------------\n")
+    im1 = lena_gray
+    im2 = darkimage
+    SLTim =  # TODO
 
-# then print
-plt.figure()
-plt.subplot(1, 3, 1)
-plt.imshow(im1)
-plt.title("original image")
-plt.subplot(1, 3, 2)
-plt.imshow(SLTim, cmap='gray', vmin=0, vmax=255)
-plt.title("tone mapped")
-plt.subplot(1, 3, 3)
-plt.imshow(im2, cmap='gray', vmin=0, vmax=255)
-plt.title("tone mapped")
+    # then print
+    plt.figure()
+    plt.subplot(1, 3, 1)
+    plt.imshow(im1)
+    plt.title("original image")
+    plt.subplot(1, 3, 2)
+    plt.imshow(SLTim, cmap='gray', vmin=0, vmax=255)
+    plt.title("tone mapped")
+    plt.subplot(1, 3, 3)
+    plt.imshow(im2, cmap='gray', vmin=0, vmax=255)
+    plt.title("tone mapped")
 
-d1 =  # mean sqr dist between im1 and im2
-d2 =  # mean sqr dist between mapped image and im2
-print("mean sqr dist between im1 and im2 = {}\n".format(d1))
-print("mean sqr dist between mapped image and im2 = {}\n".format(d2))
+    d1 =  # mean sqr dist between im1 and im2
+    d2 =  # mean sqr dist between mapped image and im2
+    print("mean sqr dist between im1 and im2 = {}\n".format(d1))
+    print("mean sqr dist between mapped image and im2 = {}\n".format(d2))
 
-print("i ------------------------------------\n")
-# prove comutationally
-d =  # TODO:
-print(" {}".format(d))
+    print("i ------------------------------------\n")
+    # prove comutationally
+    d =  # TODO:
+    print(" {}".format(d))
 
-plt.show()
+    plt.show()
