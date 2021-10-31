@@ -4,16 +4,6 @@ import os.path
 from hw1_functions import *
 
 if __name__ == "__main__":
-    # feel free to add/remove/edit lines
-
-
-    # path_image = r'Images\darkimage.tif'
-    # darkimg = cv2.imread(path_image)
-    # darkimg_gray = cv2.cvtColor(darkimg, cv2.COLOR_BGR2GRAY)
-    #
-    # path_image2 = r'Images\barbara.tif'
-    # barbara = cv2.imread(path_image2)
-    # barbara_gray = cv2.cvtColor(barbara, cv2.COLOR_BGR2GRAY)
 
     Images = dict()
     Images_gray = dict()
@@ -26,21 +16,28 @@ if __name__ == "__main__":
         readGrayImg = cv2.cvtColor(readImg, cv2.COLOR_BGR2GRAY)
 
         Images_gray[imgName[0] + '_gray'] = readGrayImg
+    # Images_gray keys are : Barbara_gray', 'Barbarasmall_gray', 'Binary1_gray', 'Binary2_gray', 'Binary3_gray', 'Cups_gray',
+    # 'Darkimage_gray', 'Flathistogram_gray', 'Foursquares_gray', 'Fruit_gray', 'Gausshistogram_gray', 'Lakescene_gray',
+    # 'Lena_gray', 'Lenabw_gray', 'Lighthouse_gray', 'Mountainscene_gray', 'Racecar_gray', 'Random_gray', 'Reallena_gray',
+    # 'Ricefields_gray', 'Square_gray', 'Stroller_gray', 'Tools_gray', 'Wine_gray'])
 
 
+    # Images keys are: Barbara', 'Barbarasmall', 'Binary1', 'Binary2', 'Binary3', 'Cups', 'Darkimage', 'Flathistogram',
+    # 'Foursquares', 'Fruit', 'Gausshistogram', 'Lakescene', 'Lena', 'Lenabw', 'Lighthouse', 'Mountainscene', 'Racecar',
+    # 'Random', 'Reallena', 'Ricefields', 'Square', 'Stroller', 'Tools', 'Wine'])
 
 
-    print("Start running script  ------------------------------------\n")
-    print_IDs()
-
+    # print("Start running script  ------------------------------------\n")
+    # print_IDs()
+    #
     # print("a ------------------------------------\n")
     # Range = [100, 150]
-    # enhanced_img, a, b = contrastEnhance(Images_gray['Darkimage_gray'],Range)  # add parameters
+    # enhanced_img, a, b = contrastEnhance(Images_gray['Lena_gray'],Range)  # add parameters
     #
     # # display images
     # plt.figure()
     # plt.subplot(1, 2, 1)
-    # plt.imshow(Images['Darkimage'])
+    # plt.imshow(Images['Lena'])
     # plt.title('original')
     #
     # plt.subplot(1, 2, 2)
@@ -51,7 +48,7 @@ if __name__ == "__main__":
     # print("a = {}, b = {}\n".format(a, b))
     #
     # # display mapping
-    # showMapping(Range,a,b)  # add parameters
+    # showMapping(Range, a, b)  # add parameters
     #
     # print("b ------------------------------------\n")
     # enhanced2_img, a, b = contrastEnhance(enhanced_img,[0,255])  # add parameters
@@ -72,7 +69,7 @@ if __name__ == "__main__":
     # difference = enhanced2_img - enhanced_img
     # plt.imshow(difference,cmap='gray', vmin=0, vmax=255)
     # plt.title('Diff between enhanced1 and max enhance')
-    #
+
     # print("c ------------------------------------\n")
     # mdist = minkowski2Dist(Images_gray['Darkimage_gray'],Images_gray['Darkimage_gray'])  # add parameters
     # print("Minkowski dist between image and itself\n")
@@ -96,7 +93,7 @@ if __name__ == "__main__":
     # plt.xlabel("contrast")
     # plt.ylabel("distance")
     # plt.title("Minkowski distance as function of contrast")
-    #
+
     # print("d ------------------------------------\n")
     # im = Images_gray['Darkimage_gray']
     # tm = np.arange(256)
@@ -121,25 +118,25 @@ if __name__ == "__main__":
     # plt.title("tone mapped")
     #
     # print("f ------------------------------------\n")
-    # negative_im = sltNegative(Images_gray['Darkimage_gray'])
+    # negative_im = sltNegative(Images_gray['Binary1_gray'])
     # plt.figure()
     # plt.imshow(negative_im, cmap='gray', vmin=0, vmax=255)
     # plt.title("negative image using SLT")
-    #
+
     # print("g ------------------------------------\n")
     # thresh = 120  # play with it to see changes
-    # lena = cv2.imread(r"Images\\RealLena.tif")
-    # lena_gray = cv2.cvtColor(lena, cv2.COLOR_BGR2GRAY)
-    # thresh_im = sltThreshold(lena_gray, thresh)  # add parameters
+    # thresh_im = sltThreshold(Images_gray['Reallena_gray'], thresh)  # add parameters
     #
     # plt.figure()
     # plt.imshow(thresh_im, cmap='gray', vmin=0, vmax=255)
     # plt.title("thresh image using SLT")
-    #
+
     # print("h ------------------------------------\n")
-    im1 = Images_gray['Lena_gray']
-    im2 = Images_gray['Darkimage_gray']
-    SLTim, _ = SLTmap(im1, im2) #TODO : DONE
+    # TODO: DONE
+    # im1 = Images_gray['Lena_gray']
+    # im2 = Images_gray['Reallena_gray']
+    # SLTim, _ = SLTmap(im1, im2)
+  
     #
     # # then print
     # plt.figure()
@@ -147,12 +144,12 @@ if __name__ == "__main__":
     # plt.imshow(im1, cmap='gray')
     # plt.title("original image")
     # plt.subplot(1, 3, 2)
-    # plt.imshow(SLTim, cmap='gray')
-    # plt.title("tone mapped")
+    # plt.imshow(im2, cmap='gray')
+    # plt.title("Mapped to")
     # plt.subplot(1, 3, 3)
-    # plt.imshow(im2, cmap='gray', vmin=0, vmax=255)
-    # plt.title("tone mapped")
-    #
+    # plt.imshow(SLTim, cmap='gray', vmin=0, vmax=255)
+    # plt.title("Result of Mapped img1 to im2")
+
     # d1 = meanSqrDist(im1, im2)# mean sqr dist between im1 and im2
     # d2 = meanSqrDist(SLTim, im2)# mean sqr dist between mapped image and im2
     # print("mean sqr dist between im1 and im2 = {}\n".format(d1))

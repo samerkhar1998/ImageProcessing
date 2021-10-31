@@ -33,8 +33,8 @@ def minkowski2Dist(im1,im2):# p=2 -> Euclidean distance
     if(np.size(im1) != np.size(im2)):
         print("images are not in the same size, minkowski2Dist cant calculate!!!!!!")
         return 0
-    hist1,_ = np.histogram(im1, bins = 256, range=(0,255)) #histogram for first image
-    hist2,_ = np.histogram(im2, bins = 256, range=(0,255)) #histogram for second image
+    hist1,_ = np.histogram(im1, bins = 256, range=(0,255),density=True) #normalized histogram for first image
+    hist2,_ = np.histogram(im2, bins = 256, range=(0,255),density=True) #normlized histogram for second image
 
     return math.sqrt(np.sum((np.square(hist1- hist2))))# first distance between two pix then do square for each element in the new hist
                                                        # then sum all the elements all together then return the sqr for the sum.
